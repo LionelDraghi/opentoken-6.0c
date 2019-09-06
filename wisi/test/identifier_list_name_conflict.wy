@@ -1,0 +1,90 @@
+;; small Ada-like grammar illustrating the reduce/reduce conflict
+;; between an identifier_list and a name.
+;;
+;; The grammar is ambiguous; the parse spawns two parsers, one finding
+;; name lists, the other identifier lists; both succeed, resulting in
+;; a parse error.
+
+%{
+;; Copyright (C) 2013 Stephen Leake.  All Rights Reserved.
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation; either version 3, or (at
+;; your option) any later version.
+;;
+;; This software is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+%}
+
+%keyword LEFT_PAREN "("
+%keyword RIGHT_PAREN ")"
+
+%token <punctuation> COMMA ","
+%token <punctuation> EQUAL_GREATER "=>"
+
+%token <string-double> STRING_LITERAL
+%token <symbol> IDENTIFIER
+
+%token <whitespace> WHITESPACE ""
+%token <line_comment> COMMENT "--"
+
+;; not first nonterminal
+%start compilation
+
+%conflict REDUCE/REDUCE in state identifier_list, name on token COMMA
+%conflict REDUCE/REDUCE in state identifier_list, name on token LEFT_PAREN
+%conflict REDUCE/REDUCE in state identifier_list, name on token IDENTIFIER
+%conflict REDUCE/REDUCE in state identifier_list, name on token STRING_LITERAL
+%conflict REDUCE/REDUCE in state identifier_list, name on token EOI
+
+%%
+
+association
+  : selector_name EQUAL_GREATER name
+  ;
+
+association_list
+  : association
+  | association_list COMMA association
+  ;
+
+compilation
+  : compilation_unit compilation_unit compilation_unit
+    (setq wisi-test-success t)
+  ;
+
+compilation_unit
+  : identifier_list
+  | name_list
+  | LEFT_PAREN association_list RIGHT_PAREN
+  ;
+
+identifier_list
+  : IDENTIFIER
+  | identifier_list COMMA IDENTIFIER
+  ;
+
+name
+  : IDENTIFIER
+  | STRING_LITERAL  ;; operator_symbol
+  ;
+
+name_list
+  : name
+  | name_list COMMA name
+  ;
+
+selector_name
+  : IDENTIFIER
+  | STRING_LITERAL  ;; operator_symbol
+  ;
+
+%%
+
+;;; end of file

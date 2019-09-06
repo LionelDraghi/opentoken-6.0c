@@ -1,0 +1,47 @@
+;;; Demonstrate a correct way to allow an empty production where a list is allowed.
+
+;; Consider the following statements:
+;;
+;; 1) is <empty> begin ;
+;; 2) is is <empty> begin ; begin ;
+;; 3) is <empty> is <empty> begin ; begin ;
+;;
+;;; see empty_production_2.wy for an incorrect attempt to represent
+;;; this grammar
+
+%{
+%}
+
+%keyword BEGIN "begin"
+%keyword IS "is"
+
+%token <punctuation> SEMICOLON ";"
+
+%token <whitespace> WHITESPACE ""
+%token <line_comment> COMMENT "--"
+
+%start declarative_part
+
+%%
+
+declarations
+  : body
+  | declarations body
+  ;
+
+declarative_part
+  : ;; empty
+  | declarations
+  ;
+
+body
+  : IS declarative_part BEGIN SEMICOLON
+    (wisi-statement-action [1 block-middle 3 block-middle 4 statement-end])
+  ;
+
+%%
+
+;; Local Variables:
+;; eval: (add-hook 'before-save-hook 'delete-trailing-whitespace nil t)
+;; End:
+;;; end of file
