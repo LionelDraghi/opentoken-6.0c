@@ -32,7 +32,6 @@ package body OpenToken.Token.Enumerated.String is
    --------------------------------------------------------------------------
    function Unquote (Item : in Standard.String) return Standard.String
    is
-      use Buffers;
       Item_Next  : Natural := Item'First;
       Result      : Standard.String (1 .. Item'Length);
       Result_Last : Natural := Result'First - 1;
