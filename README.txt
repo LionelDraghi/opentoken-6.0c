@@ -15,3 +15,5 @@ OpenToken is currently maintained by Stephen Leake; mailto:stephen_leake@stephe-
 Submit bugs via the Debian Bug system http://bugs.debian.org/Bugs/, against the opentoken source package.
 
 Discussion about OpenToken is on the newsgroup comp.lang.ada.
+
+The current status is available here: https://packages.qa.debian.org/o/opentoken.html
