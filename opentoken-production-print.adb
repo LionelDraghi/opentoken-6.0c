@@ -35,7 +35,6 @@ package body OpenToken.Production.Print is
 
    procedure Print (Item : in Right_Hand_Side)
    is
-      use type Nonterminal.Synthesize;
    begin
       Token_List.Print (Item.Tokens);
       Put (", Action => ");

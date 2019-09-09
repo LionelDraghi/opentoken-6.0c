@@ -231,7 +231,7 @@ package body OpenToken.Production.Parser.LRk_Item is
       while Match_Set /= null loop
          if
            Match_Set.Lookaheads (1 .. Match_Set.Last) =
-           Value.Lookaheads (1 .. Value.Last)
+             Value.Lookaheads (1 .. Value.Last)
          then
             Found_Match := True;
             exit;
@@ -292,7 +292,7 @@ package body OpenToken.Production.Parser.LRk_Item is
    function Find
      (Left  : in Item_Set;
       Right : in Item_Set_List)
-   return Item_Set_Ptr
+     return Item_Set_Ptr
    is
       Right_Set  : Item_Set_Ptr := Right.Head;
       Right_Item : Item_Ptr;
@@ -439,7 +439,7 @@ package body OpenToken.Production.Parser.LRk_Item is
 
                if
                  Existing_Lookahead.Lookaheads (1 .. Existing_Lookahead.Last) =
-                 New_Lookahead.Lookaheads (1 .. New_Lookahead.Last)
+                   New_Lookahead.Lookaheads (1 .. New_Lookahead.Last)
                then
                   Found_Match := True;
                   exit;
@@ -608,7 +608,6 @@ package body OpenToken.Production.Parser.LRk_Item is
      return Item_Set
    is
       use Token_List;
-      use type Token.Handle;
       use type Token.Token_ID;
 
       Goto_Set : Item_Set;
