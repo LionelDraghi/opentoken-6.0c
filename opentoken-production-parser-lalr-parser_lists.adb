@@ -483,8 +483,10 @@ package body OpenToken.Production.Parser.LALR.Parser_Lists is
      return Constant_Reference_Type
    is
       pragma Unreferenced (Container);
+      Result : constant Constant_Reference_Type
+        := (Element => Position.Item'Access);
    begin
-      return (Element => Position.Item'Access);
+      return Result;
    end Constant_Reference;
 
    type List_Access_Constant is access constant List;
