@@ -595,7 +595,9 @@ package body OpenToken.Token.Enumerated.Analyzer is
                if EOLs_Found = 0 then
                   Analyzer.Next_Column := Analyzer.Next_Column + Matched_Length;
                else
-                  Analyzer.Next_Column := Analyzer.First_Column + Characters_After_Last_EOL (Analyzer, Matched_Length);
+                  Analyzer.Next_Column := Analyzer.First_Column
+                    + Characters_After_Last_EOL (Analyzer, Matched_Length)
+                    mod Analyzer.Max_Buffer_Size;
                end if;
 
                --  Ditch the last token to make room for more parsing
