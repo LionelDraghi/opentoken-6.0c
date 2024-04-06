@@ -9,7 +9,7 @@ licenses = "GPL-3.0-or-later"
 website = ""
 tags = ["lexer", "parser"]
 
-project-files = ["./build/release/opentoken_test.gpr"]
+project-files = ["./build/release/opentoken.gpr"]
 
 [[depends-on]]
 aunit = "^24.0.0"
