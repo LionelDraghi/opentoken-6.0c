@@ -9,7 +9,7 @@ with "../common";
 project OpenToken is
 
    for Source_Dirs use
-     ("../..",
+     ("../../src",
       "../../Language_Lexers",
       "../../wisi");
 

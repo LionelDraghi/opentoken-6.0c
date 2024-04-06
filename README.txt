@@ -1,17 +1,19 @@
 OpenToken Package Readme
 
 ----
-** Note that OpenToken is no more maintened**
+** Note that OpenToken is no more maintained**
 The successor of OpenToken is available on Stephen Leake home : [WisiToken](https://stephe-leake.org/ada/wisitoken.html)
 
-This release was made available for the creation of a separate crates, when porting [archicheck](https://github.com/LionelDraghi/ArchiCheck) on ALire.
+This release was made available for the creation of a specific crates, when porting [archicheck](https://github.com/LionelDraghi/ArchiCheck) on ALire.
 
-The modifications respect to the last official version, the 6.0b are :
+The modifications respect to the last official version (the 6.0b) are :
 - Fixed : Analyzer.Reset missing in Ada_Lexer Set_Input_Feeder procedure
 - Added : Annotation support added in the Java_Lexer (MetaData starting with @)
 - Buffer_Size of the Tokenizer in Java_Lexer increased to 8192
 - cosmetic modifications in comments to comply with gnat standards
 - some useless "with" removed
+
+NB : Due to Alire using semantic versioning, 6.0c is named 6.0.3
 
 Lionel Draghi, april 2024
 ----
