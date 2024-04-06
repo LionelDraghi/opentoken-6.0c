@@ -1,25 +1,25 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
--- Copyright (C) 2002, 2003, 2009, 2010, 2013, 2014 Stephe Leake
--- Copyright (C) 1999 Ted Dennison
+--  Copyright (C) 2002, 2003, 2009, 2010, 2013, 2014 Stephe Leake
+--  Copyright (C) 1999 Ted Dennison
 --
 --  References:
 --
 --  [dragon] "Compilers Principles, Techniques, and Tools" by Aho,
 --  Sethi, and Ullman (aka: "The [Red] Dragon Book").
 --
--- This file is part of the OpenToken package.
+--  This file is part of the OpenToken package.
 --
--- The OpenToken package is free software; you can redistribute it and/or
--- modify it under the terms of the  GNU General Public License as published
--- by the Free Software Foundation; either version 3, or (at your option)
--- any later version. The OpenToken package is distributed in the hope that
--- it will be useful, but WITHOUT ANY WARRANTY; without even the implied
--- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU General Public License for  more details.  You should have received
--- a copy of the GNU General Public License  distributed with the OpenToken
--- package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
--- 59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
+--  The OpenToken package is free software; you can redistribute it and/or
+--  modify it under the terms of the  GNU General Public License as published
+--  by the Free Software Foundation; either version 3, or (at your option)
+--  any later version. The OpenToken package is distributed in the hope that
+--  it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+--  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--  GNU General Public License for  more details.  You should have received
+--  a copy of the GNU General Public License  distributed with the OpenToken
+--  package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
+--  59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
 --
 --  As a special exception, if other files instantiate generics from
 --  this unit, or you link this unit with other files to produce an
@@ -27,9 +27,9 @@
 --  executable to be covered by the GNU General Public License. This
 --  exception does not however invalidate any other reasons why the
 --  executable file might be covered by the GNU Public License.
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 --  This package is the root package of an implementation of a LALR
 --  (Look-Ahead Left-to-right scanning Rightmost-deriving) parser for
 --  grammars defined by a production list. It contains types shared by
@@ -67,7 +67,7 @@ package OpenToken.Production.Parser.LALR is
       when Reduce | Accept_It =>
          LHS         : Nonterminal.Handle;
          Action      : Nonterminal.Synthesize;
-         Index       : Integer; -- into rule, for generating action names, debugging.
+         Index       : Integer; --  into rule, for generating action names, debugging.
          Token_Count : Natural;
       when Error =>
          null;

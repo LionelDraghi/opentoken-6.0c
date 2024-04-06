@@ -1,19 +1,19 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
--- Copyright (C) 1999 FlightSafety International and Ted Dennison
+--  Copyright (C) 1999 FlightSafety International and Ted Dennison
 --
--- This file is part of the OpenToken package.
+--  This file is part of the OpenToken package.
 --
--- The OpenToken package is free software; you can redistribute it and/or
--- modify it under the terms of the  GNU General Public License as published
--- by the Free Software Foundation; either version 3, or (at your option)
--- any later version. The OpenToken package is distributed in the hope that
--- it will be useful, but WITHOUT ANY WARRANTY; without even the implied
--- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU General Public License for  more details.  You should have received
--- a copy of the GNU General Public License  distributed with the OpenToken
--- package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
--- 59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
+--  The OpenToken package is free software; you can redistribute it and/or
+--  modify it under the terms of the  GNU General Public License as published
+--  by the Free Software Foundation; either version 3, or (at your option)
+--  any later version. The OpenToken package is distributed in the hope that
+--  it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+--  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--  GNU General Public License for  more details.  You should have received
+--  a copy of the GNU General Public License  distributed with the OpenToken
+--  package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
+--  59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
 --
 --  As a special exception, if other files instantiate generics from
 --  this unit, or you link this unit with other files to produce an
@@ -28,12 +28,12 @@
 --           FlightSafety International Simulation Systems Division
 --                    Broken Arrow, OK  USA  918-259-4000
 --
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 --  This package implements a token recognizer for a token of any
 --  number of characters from a given set.
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 package body OpenToken.Recognizer.Character_Set is
 
    overriding procedure Clear (The_Token : in out Instance)
@@ -60,9 +60,9 @@ package body OpenToken.Recognizer.Character_Set is
       end case;
    end Analyze;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  This procedure will be called to create a character set token
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    function Get (Set        : in Ada.Strings.Maps.Character_Set;
                  Reportable : in Boolean                        := False)
                 return Instance

@@ -29,7 +29,8 @@ project Common is
          "-gnat2012",
          "-gnatfoqQ",
          "-gnatVa",
-         "-gnatwaeLP",
+         "-gnatwaeLPA",
+         "-gnatw_A", -- 2024 april 06, Lionel Draghi : no time to chase all the "use of an anonymous access type allocator" 
          "-fstack-check");
 
       --  AdaCore recommends -O2 -gnatn instead of -O3; -O3 includes
@@ -42,6 +43,7 @@ project Common is
          "-gnat2012",
          "-gnatfnoqQ",
          "-gnatwaeL",
+         "-gnatw_A", -- 2024 april 06, Lionel Draghi : no time to chase all the "use of an anonymous access type allocator" 
          "-fstack-check");
 
       --  The project file syntax does not let us set a variable in a

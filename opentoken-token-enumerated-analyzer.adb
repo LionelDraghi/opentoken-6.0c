@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
 --  Copyright (C) 2002, 2003, 2009, 2012 - 2014 Stephe Leake
 --  Copyright (C) 1999, 2000 FlightSafety International and Ted Dennison
@@ -30,7 +30,7 @@
 --           FlightSafety International Simulation Systems Division
 --                    Broken Arrow, OK  USA  918-259-4000
 --
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
 with Ada.Exceptions;
 with Ada.Strings.Fixed;
@@ -353,7 +353,7 @@ package body OpenToken.Token.Enumerated.Analyzer is
    is
       New_Analyzer : Instance (1);
    begin
-      New_Analyzer.Lookahead_Count := 0; -- avoid complaint about "read but never assigned"
+      New_Analyzer.Lookahead_Count := 0; --  avoid complaint about "read but never assigned"
       return New_Analyzer;
    end Null_Analyzer;
 

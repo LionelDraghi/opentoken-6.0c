@@ -1,20 +1,20 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
--- Copyright (C) 2012 - 2014 Stephe Leake
--- Copyright (C) 1999 Ted Dennison
+--  Copyright (C) 2012 - 2014 Stephe Leake
+--  Copyright (C) 1999 Ted Dennison
 --
--- This file is part of the OpenToken package.
+--  This file is part of the OpenToken package.
 --
--- The OpenToken package is free software; you can redistribute it and/or
--- modify it under the terms of the  GNU General Public License as published
--- by the Free Software Foundation; either version 3, or (at your option)
--- any later version. The OpenToken package is distributed in the hope that
--- it will be useful, but WITHOUT ANY WARRANTY; without even the implied
--- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU General Public License for  more details.  You should have received
--- a copy of the GNU General Public License  distributed with the OpenToken
--- package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
--- 59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
+--  The OpenToken package is free software; you can redistribute it and/or
+--  modify it under the terms of the  GNU General Public License as published
+--  by the Free Software Foundation; either version 3, or (at your option)
+--  any later version. The OpenToken package is distributed in the hope that
+--  it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+--  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--  GNU General Public License for  more details.  You should have received
+--  a copy of the GNU General Public License  distributed with the OpenToken
+--  package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
+--  59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
 --
 --  As a special exception, if other files instantiate generics from
 --  this unit, or you link this unit with other files to produce an
@@ -23,12 +23,12 @@
 --  exception does not however invalidate any other reasons why the
 --  executable file might be covered by the GNU Public License.
 --
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 --  This package provides a type and operations for building lists of
 --  tokens for use in grammar productions
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 generic
 
 package OpenToken.Token.Enumerated.List is
@@ -39,29 +39,29 @@ package OpenToken.Token.Enumerated.List is
 
    function Length (Item : in Instance) return Natural;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Create a token list from a single instance.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    function Only (Subject : in Class) return Instance;
    function Only (Subject : in Handle) return Instance;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Create a token list from a pair of token instances.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    function "&" (Left  : in Class;
                  Right : in Class) return Instance;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Create a token list from a token instance and a token list.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    function "&" (Left  : in Class;
                  Right : in Instance) return Instance;
    function "&" (Left  : in Instance;
                  Right : in Class) return Instance;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Create a token list from a pair of token lists.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    function "&" (Left  : in Instance;
                  Right : in Instance) return Instance;
 
@@ -84,15 +84,15 @@ package OpenToken.Token.Enumerated.List is
    type List_Iterator is private;
    Null_Iterator : constant List_Iterator;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Return an initialized iterator for traversing the token list
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    function Initial_Iterator (List : in Instance) return List_Iterator;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Move the iterator down the list to the next token, or to
    --  Null_Iterator if there is no next token.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    procedure Next_Token (Iterator : in out List_Iterator);
    procedure Next (Iterator : in out List_Iterator) renames Next_Token;
 

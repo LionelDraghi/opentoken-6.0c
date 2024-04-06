@@ -1,20 +1,20 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
--- Copyright (C) 2012 Stephen Leake
--- Copyright (C) 1999 FlightSafety International and Ted Dennison
+--  Copyright (C) 2012 Stephen Leake
+--  Copyright (C) 1999 FlightSafety International and Ted Dennison
 --
--- This file is part of the OpenToken package.
+--  This file is part of the OpenToken package.
 --
--- The OpenToken package is free software; you can redistribute it and/or
--- modify it under the terms of the  GNU General Public License as published
--- by the Free Software Foundation; either version 3, or (at your option)
--- any later version. The OpenToken package is distributed in the hope that
--- it will be useful, but WITHOUT ANY WARRANTY; without even the implied
--- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU General Public License for  more details.  You should have received
--- a copy of the GNU General Public License  distributed with the OpenToken
--- package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
--- 59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
+--  The OpenToken package is free software; you can redistribute it and/or
+--  modify it under the terms of the  GNU General Public License as published
+--  by the Free Software Foundation; either version 3, or (at your option)
+--  any later version. The OpenToken package is distributed in the hope that
+--  it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+--  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--  GNU General Public License for  more details.  You should have received
+--  a copy of the GNU General Public License  distributed with the OpenToken
+--  package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
+--  59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
 --
 --  As a special exception, if other files instantiate generics from
 --  this unit, or you link this unit with other files to produce an
@@ -29,9 +29,9 @@
 --           FlightSafety International Simulation Systems Division
 --                    Broken Arrow, OK  USA  918-259-4000
 --
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 --  This package implements a token recognizer for an identifier. An
 --  identifier is defined as a string starting with a character in a
 --  given set of start characters and thereafter consisting of a
@@ -42,13 +42,13 @@
 --  If you use an identifier token with keyword tokens, they will
 --  *both* typically match. So be sure to list the keyword tokens in
 --  your syntax first, so that the keywords will take precedence.
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 with Ada.Strings.Maps;
 package OpenToken.Recognizer.Identifier is
 
    type Instance is new OpenToken.Recognizer.Instance with private;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  This procedure will be called to create an Identifier token.
    --
    --  Underscore ('_') is treated as a separator (as in Ada); only

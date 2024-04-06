@@ -1,20 +1,20 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
--- Copyright (C) 2009 Stephe Leake
--- Copyright (C) 1999 FlightSafety International and Ted Dennison
+--  Copyright (C) 2009 Stephe Leake
+--  Copyright (C) 1999 FlightSafety International and Ted Dennison
 --
--- This file is part of the OpenToken package.
+--  This file is part of the OpenToken package.
 --
--- The OpenToken package is free software; you can redistribute it and/or
--- modify it under the terms of the  GNU General Public License as published
--- by the Free Software Foundation; either version 3, or (at your option)
--- any later version. The OpenToken package is distributed in the hope that
--- it will be useful, but WITHOUT ANY WARRANTY; without even the implied
--- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU General Public License for  more details.  You should have received
--- a copy of the GNU General Public License  distributed with the OpenToken
--- package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
--- 59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
+--  The OpenToken package is free software; you can redistribute it and/or
+--  modify it under the terms of the  GNU General Public License as published
+--  by the Free Software Foundation; either version 3, or (at your option)
+--  any later version. The OpenToken package is distributed in the hope that
+--  it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+--  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--  GNU General Public License for  more details.  You should have received
+--  a copy of the GNU General Public License  distributed with the OpenToken
+--  package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
+--  59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
 --
 --  As a special exception, if other files instantiate generics from
 --  this unit, or you link this unit with other files to produce an
@@ -29,7 +29,7 @@
 --
 --           FlightSafety International Simulation Systems Division
 --                    Broken Arrow, OK  USA  918-259-4000
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
 with Ada.Characters.Latin_1;
 with Ada.Strings.Maps;
@@ -37,14 +37,14 @@ with Ada.Strings.Maps.Constants;
 
 use type Ada.Strings.Maps.Character_Set;
 
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 --  This package implements a token recognizer for
 --  comma-separated-value (CSV) fields of any type. Due to its general
 --  nature, it should be declared later in the syntax than more
 --  specific CSV field recognizers, so that it will work as a default
 --  match. To facilitate that, it does not match any leading or
 --  trailing whitespace.
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 package body OpenToken.Recognizer.CSV_Field is
 
    --  Characters that can be inside the field, but not at the ends

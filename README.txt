@@ -1,5 +1,22 @@
 OpenToken Package Readme
 
+----
+** Note that OpenToken is no more maintened**
+The successor of OpenToken is available on Stephen Leake home : [WisiToken](https://stephe-leake.org/ada/wisitoken.html)
+
+This release was made available for the creation of a separate crates, when porting [archicheck](https://github.com/LionelDraghi/ArchiCheck) on ALire.
+
+The modifications respect to the last official version, the 6.0b are :
+- Fixed : Analyzer.Reset missing in Ada_Lexer Set_Input_Feeder procedure
+- Added : Annotation support added in the Java_Lexer (MetaData starting with @)
+- Buffer_Size of the Tokenizer in Java_Lexer increased to 8192
+- cosmetic modifications in comments to comply with gnat standards
+- some useless "with" removed
+
+Lionel Draghi, april 2024
+----
+
+
 See Docs/opentoken.html for more info, including installation instructions.
 
 OpenToken is useable in pure source form. There is a GNAT project file

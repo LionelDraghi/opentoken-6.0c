@@ -168,6 +168,7 @@ package body Ada_Lexer is
    procedure Set_Input_Feeder (File : in Ada.Text_IO.File_Type) is
    begin
       Ada.Text_IO.Set_Input (File);
+      Analyzer.Reset;
       Analyzer.Set_Text_Feeder (OpenToken.Text_Feeder.Text_IO.Create (Ada.Text_IO.Current_Input));
    end Set_Input_Feeder;
 

@@ -23,11 +23,11 @@
 --  executable file might be covered by the GNU Public License.
 --
 
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --  This package declares a type for designating a string. Useful as
 --  a literal in LR parsers, or an integer value in recursive descent
 --  parsers.
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 generic
 package OpenToken.Token.Enumerated.String is
 
@@ -39,9 +39,9 @@ package OpenToken.Token.Enumerated.String is
 
    type Handle is access all Class;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Get a string token.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    function Get
      (ID    : in Token_ID;
       Value : in Standard.String := "";

@@ -64,8 +64,6 @@ begin
 
          elsif Match (Token_Str) then
             declare
-               use Standard.Ada.Strings.Unbounded;
-
                --  kind has syntax <name>; strip < >.
 
                Kind_First : constant Integer := 1 + Index_Non_Blank (Source => Line, From => Key_Last + 1);

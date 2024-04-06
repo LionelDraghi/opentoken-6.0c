@@ -27,8 +27,7 @@ project OpenToken_Test is
    end Compiler;
 
    package Builder is
-      for Default_Switches ("Ada") use Common.Builder'Default_Switches ("Ada") &
-        ("-pg");
+      for Default_Switches ("Ada") use Common.Builder'Default_Switches ("Ada"); -- & ("-pg");
 
       --  We use ".exe" extension even on non-Windows, to simplify the makefiles.
       for Executable_Suffix use ".exe";

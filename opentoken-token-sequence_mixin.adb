@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
 --  Copyright (C) 2009, 2014 Stephe Leake
 --  Copyright (C) 2000 Ted Dennison
@@ -23,7 +23,7 @@
 --  executable to be covered by the GNU General Public License. This
 --  exception does not however invalidate any other reasons why the
 --  executable file might be covered by the GNU Public License.
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
 with Ada.Text_IO;
 package body OpenToken.Token.Sequence_Mixin is

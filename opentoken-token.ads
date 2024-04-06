@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
 --  Copyright (C) 2009, 2014 Stephe Leake
 --  Copyright (C) 1999, 2000 Ted Dennison
@@ -24,13 +24,13 @@
 --  exception does not however invalidate any other reasons why the
 --  executable file might be covered by the GNU Public License.
 --
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 --  This package defines an abstract token type, for use by this
 --  facility. It also defines a parse operation and a token source
 --  type, for use by recursive decent parsers.
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 
 limited with OpenToken.Token.Linked_List;
 package OpenToken.Token is
@@ -104,9 +104,9 @@ package OpenToken.Token is
       Look_Ahead : in     Boolean := False)
       is abstract;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Returns the last token that was matched.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    function Get (Analyzer : in Source) return Class is abstract;
 
    type Queue_Mark is abstract tagged limited null record;

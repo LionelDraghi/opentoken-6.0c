@@ -1,19 +1,19 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
--- Copyright (C) 1999 FlightSafety International and Ted Dennison
+--  Copyright (C) 1999 FlightSafety International and Ted Dennison
 --
--- This file is part of the OpenToken package.
+--  This file is part of the OpenToken package.
 --
--- The OpenToken package is free software; you can redistribute it and/or
--- modify it under the terms of the  GNU General Public License as published
--- by the Free Software Foundation; either version 3, or (at your option)
--- any later version. The OpenToken package is distributed in the hope that
--- it will be useful, but WITHOUT ANY WARRANTY; without even the implied
--- warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
--- GNU General Public License for  more details.  You should have received
--- a copy of the GNU General Public License  distributed with the OpenToken
--- package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
--- 59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
+--  The OpenToken package is free software; you can redistribute it and/or
+--  modify it under the terms of the  GNU General Public License as published
+--  by the Free Software Foundation; either version 3, or (at your option)
+--  any later version. The OpenToken package is distributed in the hope that
+--  it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+--  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--  GNU General Public License for  more details.  You should have received
+--  a copy of the GNU General Public License  distributed with the OpenToken
+--  package;  see file GPL.txt.  If not, write to  the Free Software Foundation,
+--  59 Temple Place - Suite 330,  Boston, MA 02111-1307, USA.
 --
 --  As a special exception, if other files instantiate generics from
 --  this unit, or you link this unit with other files to produce an
@@ -22,9 +22,9 @@
 --  exception does not however invalidate any other reasons why the
 --  executable file might be covered by the GNU Public License.
 --
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 --  This package declares an abstract type for recognizing a single
 --  token. It is designed to be called by an instance of the
 --  OpenToken.Analyzer class, which will typically be calling several
@@ -39,7 +39,7 @@
 --  tokens in the child packages is highly reccomended where possible.
 --  State information should be saved in the token itself to make the
 --  system reentrant.
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 package OpenToken.Recognizer is
 
    --  Indication from a recognizer of how the given string matches.
@@ -67,10 +67,10 @@ package OpenToken.Recognizer is
    procedure Clear (The_Token : in out Instance) is abstract;
 
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  This procedure will be called to perform further analysis on a token
    --  based on the given next character.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    procedure Analyze (The_Token : in out Instance;
                       Next_Char : in Character;
                       Verdict   : out Analysis_Verdict) is abstract;

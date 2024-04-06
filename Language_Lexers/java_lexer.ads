@@ -116,6 +116,7 @@ package Java_Lexer is
       String_T,            -- "Any characters except " or \ and escape sequences"
       --  Other tokens
       Identifier_T,
+      Annotation_T,
       EndOfLineComment_T,  -- // to end of line
       EmbeddedComment_T,   -- /* anything (even several lines) */
       Whitespace_T,
@@ -239,6 +240,10 @@ package Java_Lexer is
            (Allow_Underscores          => False,
             Allow_Signs                => False,
             Allow_Laziness             => True)),
+      Annotation_T                     => Tokenizer.Get
+        (OpenToken.Recognizer.Identifier.Get
+           (Start_Chars                => Ada.Strings.Maps.To_Set ('@'),
+            Body_Chars                 => Ada.Strings.Maps.Constants.Alphanumeric_Set)),
       Identifier_T                     => Tokenizer.Get
         (OpenToken.Recognizer.Identifier.Get
            (Start_Chars                => Ada.Strings.Maps.Constants.Letter_Set,
@@ -260,6 +265,7 @@ package Java_Lexer is
         (OpenToken.Recognizer.Character_Set.Get (OpenToken.Recognizer.Character_Set.Standard_Whitespace)),
       End_of_File_T                    => Tokenizer.Get (OpenToken.Recognizer.End_Of_File.Get));
 
-   Analyzer : constant Tokenizer.Handle := Tokenizer.Initialize (Syntax);
+   Analyzer : constant Tokenizer.Handle := Tokenizer.Initialize (Syntax,
+                                                                 Buffer_Size => 8192);
 
 end Java_Lexer;

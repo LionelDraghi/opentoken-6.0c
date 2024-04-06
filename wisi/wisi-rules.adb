@@ -32,7 +32,6 @@ procedure Wisi.Rules
 is
    use Standard.Ada.Strings;
    use Standard.Ada.Strings.Fixed;
-   use Standard.Ada.Strings.Unbounded;
 
    type State_Type is (Left_Hand_Side, Production, Action);
    State : State_Type := Left_Hand_Side;

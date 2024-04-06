@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
 --  Copyright (C) 2013, 2014 Stephe Leake
 --  Copyright (C) 1999 Ted Dennison
@@ -24,7 +24,7 @@
 --  exception does not however invalidate any other reasons why the
 --  executable file might be covered by the GNU Public License.
 --
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
 package body OpenToken.Production is
 

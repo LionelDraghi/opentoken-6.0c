@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
 --  Copyright (C) 2002, 2003, 2009, 2012 - 2014 Stephe Leake
 --  Copyright (C) 1999 FlightSafety International and Ted Dennison
@@ -31,9 +31,9 @@
 --           FlightSafety International Simulation Systems Division
 --                    Broken Arrow, OK  USA  918-259-4000
 --
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 --  This package implements a mostly full-strength tokenizer (or
 --  lexical analyizer).
 --
@@ -47,7 +47,7 @@
 --  token class and pass it into Set_Syntax.
 --
 --  Once that is done, you may repeatedly call Get_Next to get tokens.
------------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
 
 with OpenToken.Recognizer;
 generic
@@ -91,9 +91,9 @@ package OpenToken.Token.Enumerated.Analyzer is
    function Null_Analyzer return Instance;
    --  no input stream; used when grammar will be used for something other than parsing.
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Return an Analyzer with the given syntax and text feeder.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    function Initialize
      (Language_Syntax : in Syntax;
       Feeder          : in OpenToken.Text_Feeder.Text_Feeder_Ptr := null;
@@ -119,7 +119,7 @@ package OpenToken.Token.Enumerated.Analyzer is
    --------------------------------------------------------------------
    procedure Reset (Analyzer : in out Instance);
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Set the Analyzer's syntax to the given value.
    --
    --  Due to the accessability rules of Ada, you cannot create syntax
@@ -144,9 +144,9 @@ package OpenToken.Token.Enumerated.Analyzer is
    ----------------------------------------------------------------------
    procedure Set_Syntax (Analyzer : in out Instance; Language_Syntax : in Syntax);
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Set the analyzer's text feeder.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    procedure Set_Text_Feeder (Analyzer : in out Instance; Feeder : in OpenToken.Text_Feeder.Text_Feeder_Ptr);
 
    ------------------------------------------------------------------------
@@ -164,7 +164,7 @@ package OpenToken.Token.Enumerated.Analyzer is
    --------------------------------------------------------------------------
    procedure Discard_Buffered_Text (Analyzer : in out Instance);
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Set the analyzer's default token to the given ID.
    --
    --  If Find_Next can't find a matching token, it will set Token to
@@ -229,9 +229,9 @@ package OpenToken.Token.Enumerated.Analyzer is
 
    overriding function Get (Analyzer : in Instance) return OpenToken.Token.Class;
 
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    --  Returns the last token ID that was matched.
-   ----------------------------------------------------------------------------
+   -- -------------------------------------------------------------------------
    function ID (Analyzer : in Instance) return Terminal_ID;
 
    overriding function Lexeme (Analyzer : in Instance) return String;

@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 --
 --  Copyright (C) 2003, 2008, 2009, 2014 Stephen Leake
 --
@@ -22,7 +22,7 @@
 --  executable to be covered by the GNU General Public License. This
 --  exception does not however invalidate any other reasons why the
 --  executable file might be covered by the GNU Public License.
--------------------------------------------------------------------------------
+-- ----------------------------------------------------------------------------
 
 package body OpenToken.Token.Enumerated.String is
 

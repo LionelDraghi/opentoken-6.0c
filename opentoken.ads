@@ -49,7 +49,7 @@ package OpenToken is
 
    User_Error : exception; -- other user error (ie command line parameter)
 
-   Programmer_Error : exception; -- a programming convention has been violated
+   Programmer_Error : exception; --  a programming convention has been violated
 
    --  We use this regardless of OS, since we need a standard way of
    --  representing an end of line in a string buffer
