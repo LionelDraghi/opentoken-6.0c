@@ -41,6 +41,7 @@ with OpenToken.Recognizer.String;
 with OpenToken.Text_Feeder.Text_IO;
 with OpenToken.Token.Enumerated.Analyzer;
 with OpenToken.Token.Enumerated;
+
 package body Ada_Lexer is
 
    package Master_Ada_Token is new OpenToken.Token.Enumerated

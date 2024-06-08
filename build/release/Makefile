@@ -23,7 +23,7 @@ check : tree
 	../../../adactl-1.11r4/src/adactl.exe -f check_package_vars.aru ../../*.ad? ../../Language_Lexers/*.ad? -- -FT -Tobj_tree
 
 tree : force
-	gnatmake -P opentoken_tree.gpr
+	gprbuild -P opentoken_tree.gpr
 
 clean ::
 	rm -f obj_tree/*

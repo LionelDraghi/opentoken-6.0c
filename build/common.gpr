@@ -20,31 +20,30 @@ project Common is
       Style_Checks_No_Length := "-gnaty3abcefhiklnOprtx";
       Style_Checks := Style_Checks_No_Length & "M120";
 
+      Common_Switches := 
+        ("-g",
+         "-gnat2012", 
+         "-gnatVa",
+         "-gnatwa",  
+         "-gnatw_A",
+         "-gnatfoqQ",  -- 2024 april 06, Lionel Draghi : no time to get rid of all the "use of an anonymous access type allocator" 
+         "-fstack-check");
+      
       --  -gnatVa causes some inline procedures to be non-inlineable;
       --  suppress that warning with -gnatwP.
-      Debug_Switches :=
+      Debug_Switches := Common_Switches &
         --  Switches we always use
-        ("-g",
-         "-O0",
-         "-gnat2012",
-         "-gnatfoqQ",
+        ("-O0",
          "-gnatVa",
-         "-gnatwaeLPA",
-         "-gnatw_A", -- 2024 april 06, Lionel Draghi : no time to chase all the "use of an anonymous access type allocator" 
-         "-fstack-check");
+         "-gnatPA");
 
       --  AdaCore recommends -O2 -gnatn instead of -O3; -O3 includes
       --  "potentially unsafe and disruptive optimizations". We include
       --  -fstack-check because it catches hard-to-find bugs, and the
       --  processors are so fast.
-      Release_Switches :=
-        ("-g",
-         "-O2",
-         "-gnat2012",
-         "-gnatfnoqQ",
-         "-gnatwaeL",
-         "-gnatw_A", -- 2024 april 06, Lionel Draghi : no time to chase all the "use of an anonymous access type allocator" 
-         "-fstack-check");
+      Release_Switches := Common_Switches &
+        ("-O2",
+         "-gnatn");
 
       --  The project file syntax does not let us set a variable in a
       --  case statement. So we set the Default_Switches attribute to

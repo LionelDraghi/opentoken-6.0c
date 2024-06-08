@@ -1,0 +1,338 @@
+This is wisi-user_guide.info, produced by makeinfo version 7.1 from
+wisi-user_guide.texinfo.
+
+Copyright © 2014 Stephen Leake.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.3 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and no
+     Back-Cover Texts.  A copy of the license is included in the section
+     entitled "GNU Free Documentation License".
+INFO-DIR-SECTION Parser generators
+START-INFO-DIR-ENTRY
+* wisi-generate: (wisi-generate).         Ada and Elisp parser generator
+END-INFO-DIR-ENTRY
+
+
+File: wisi-user_guide.info,  Node: Top,  Next: Overview,  Prev: (dir),  Up: (dir)
+
+Wisi User Guide
+***************
+
+Copyright © 2014 Stephen Leake.
+
+     Permission is granted to copy, distribute and/or modify this
+     document under the terms of the GNU Free Documentation License,
+     Version 1.3 or any later version published by the Free Software
+     Foundation; with no Invariant Sections, no Front-Cover Texts and no
+     Back-Cover Texts.  A copy of the license is included in the section
+     entitled "GNU Free Documentation License".
+
+* Menu:
+
+* Overview::
+* Common grammar problems::
+* Syntax::
+
+
+File: wisi-user_guide.info,  Node: Overview,  Next: Common grammar problems,  Prev: Top,  Up: Top
+
+1 Overview
+**********
+
+Wisi is an add-on to OpenToken, that allows using Bison-style input
+files, and generates either OpenToken Ada source, or elisp source for
+the elisp wisi parser.
+
+   At one point, "wisi" was short for "Wisent Indentation engine"; the
+Emacs 'wisi' package implements an indentation engine that used to be
+based on the Emacs wisent parser.  However, that parser has now been
+replaced by a generalized LALR parser, so "wisi" is just a name.
+
+   "wisent" is the European bison <http://en.wikipedia.org/wiki/Wisent>.
+
+   The wisent parser generator is the Gnu parser generator implemented
+in Emacs elisp, as part of the semantic package
+<http://cedet.sourceforge.net/semantic.shtml>.  The parser is an LALR
+parser; see "Compilers, Principles, Techniques, and Tools" by Aho,
+Sethi, Ullman (The Red Dragon Book) for more information on LALR
+parsers.
+
+   While implementing the Emacs Ada indentation engine, it became clear
+that forcing the Ada grammar to be LALR was hard; it was easier to
+implement a generalized LALR parser, which tolerates some grammar
+conflicts.
+
+   The OpenToken grammar compiler (wisi-generate) reads a grammar file
+in wisi syntax, and outputs a compiled grammar in elisp format; it can
+then be used by wisi-parse.
+
+   Alternately, wisi-generate can output Ada code, for use with the
+OpenToken parser.
+
+
+File: wisi-user_guide.info,  Node: Common grammar problems,  Next: Syntax,  Prev: Overview,  Up: Top
+
+2 Common grammar problems
+*************************
+
+LALR grammars are tricky.  Here we describe some common problems people
+run into.
+
+* Menu:
+
+* Empty choice in list::
+
+
+File: wisi-user_guide.info,  Node: Empty choice in list,  Prev: Common grammar problems,  Up: Common grammar problems
+
+2.1 Empty choice in list
+========================
+
+Many programming languages have lists in the grammar.  For example, Ada
+has lists of declarations:
+
+     package_body
+       : PACKAGE name IS declaration_list BEGIN statement_list END SEMICOLON
+       ;
+
+     declaration_list
+       : declaration
+       | declaration_list declaration
+       ;
+
+     declaration
+       : object_declaration
+       | subprogram_declaration
+       ;; ...
+       ;
+
+   Note that the above grammar fragment does not allow an empty
+declaration_list.  But Ada does, so the question is how can we add that
+to the grammar.
+
+   There are four choices:
+
+  1. Add an empty declaration choice to declaration_list:
+
+          declaration_list
+            : ;; empty list
+            | declaration
+            | declaration_list declaration
+            ;
+     This is now redundant; since declaration_list can be empty, the
+     second choice is not needed:
+          declaration_list
+            : ;; empty list
+            | declaration_list declaration
+            ;
+
+  2. Add an empty declaration choice to declaration:
+
+          declaration
+            : ;; empty declaration
+            | object_declaration
+            | subprogram_declaration
+            ;; ...
+            ;
+
+  3. Add another rule with the empty production:
+
+          package_body
+            : PACKAGE name IS declarative_part BEGIN statement_list END SEMICOLON
+            ;
+
+          declarative_part
+            : ;; empty
+            | declaration_list
+            ;
+
+          declaration_list
+            : declaration
+            | declaration_list declaration
+            ;
+
+          declaration
+            : object_declaration
+            | subprogram_declaration
+            ;; ...
+            ;
+
+  4. Add another choice in package_body that leaves out
+     declaration_list:
+          package_body
+            : PACKAGE name IS declaration_list BEGIN statement_list END SEMICOLON
+            | PACKAGE name IS BEGIN statement_list END SEMICOLON
+            ;
+
+   Choice 1 is redundant, giving parse errors at parse time.  Consider
+the following statements, where "<empty>" is used to indicate an empty
+declaration:
+
+   1) package One is <empty> begin end ; 2) package One is package One
+is <empty> begin end ; begin end ; 3) package One is <empty> package One
+is <empty declaration> begin end ; begin end ;
+
+   In parsing 3), the second 'package' causes a shift/reduce conflict;
+shift to start the nested declaration (as in 2), reduce to the empty
+declaration.  Both are correct according to the grammar.
+
+   Choice 2 leads to a shift/reduce conflict in the production for
+package_body; implementing the wisi parser as a generalized LALR parser
+allows it to handle this option.
+
+   Choice 2 is the preferred choice for Ada, since it involves the least
+modifications to the original Ada grammar in the Ada reference manual.
+
+
+File: wisi-user_guide.info,  Node: Syntax,  Prev: Common grammar problems,  Up: Top
+
+3 Syntax
+********
+
+The wisi input file syntax is the based on Wisent and Gnu bison syntax
+with some additions and deletions (*note Bison: (bison)Top.).
+
+   The top level file structure is:
+%{
+PROLOGUE
+%}
+
+DECLARATIONS
+
+%%
+RULES
+%%
+
+   Comments are started by ";;" and terminated by end of line.
+
+* Menu:
+
+* Prologue::
+* Declarations::
+* Rules::
+
+
+File: wisi-user_guide.info,  Node: Prologue,  Next: Declarations,  Prev: Syntax,  Up: Syntax
+
+3.1 Prologue
+============
+
+The Prologue contains arbitrary code, copied verbatim into the output.
+For Emacs, this will typically contain:
+
+%{
+(require 'wisi)
+(require 'semantic/lex)
+(require 'wisi-compile)
+%}
+
+
+File: wisi-user_guide.info,  Node: Declarations,  Next: Rules,  Prev: Prologue,  Up: Syntax
+
+3.2 Declarations
+================
+
+The Declarations sections declares terminal tokens, conflicts, and the
+start symbol.
+
+* Menu:
+
+* Tokens::
+* Conflicts::
+* Start symbol::
+
+
+File: wisi-user_guide.info,  Node: Tokens,  Next: Conflicts,  Prev: Declarations,  Up: Declarations
+
+3.2.1 Tokens
+------------
+
+There are two types of tokens; keywords and other:
+
+%keyword SEMICOLON ";"
+
+%token <symbol> IDENTIFIER
+%token <punctuation> TICK "'"
+
+   "Keywords" are reserved words in the target language; the Emacs wisi
+and OpenToken lexers recognize them by the given string.
+
+   In the Emacs wisi lexer, "Tokens" are recognized by Emacs syntax
+properties.  There some predefined token classes:
+
+‘<punctuation>’
+     A string of characters that have punctuation syntax, and match the
+     token string.
+
+‘<symbol>’
+     A string of characters that have word syntax.
+
+‘<string-double>’
+     A string of characters that have string syntax, with double quote
+     delimiters.
+
+‘<string-single>’
+     A string of characters that have string syntax, with single quote
+     delimiters.
+
+
+File: wisi-user_guide.info,  Node: Conflicts,  Next: Start symbol,  Prev: Tokens,  Up: Declarations
+
+3.2.2 Conflicts
+---------------
+
+%conflict REDUCE/REDUCE in state abstract_limited_opt, abstract_limited_synchronized_opt on token NEW
+
+   The conflict description is output by wisi-generate when an
+undeclared conflict is detected.
+
+
+File: wisi-user_guide.info,  Node: Start symbol,  Prev: Conflicts,  Up: Declarations
+
+3.2.3 Start symbol
+------------------
+
+‘%start’
+     The start token for the grammar.
+
+
+File: wisi-user_guide.info,  Node: Rules,  Prev: Declarations,  Up: Syntax
+
+3.3 Rules
+=========
+
+The rules section declares the non-terminal tokens, and the associated
+production rules and actions.
+
+   The syntax of rules is:
+
+{non-terminal} : {token} ... [action] | {token} ... [action] ;
+
+   Each rule gives the expansion of a non-terminal token into a list of
+tokens (both terminal and non-terminal); optional productions are
+separated by "|".  Each list of tokens is followed by an "action", which
+is an elisp form that will be executed the production is reduced.
+
+
+
+Tag Table:
+Node: Top675
+Node: Overview1288
+Node: Common grammar problems2730
+Node: Empty choice in list3005
+Node: Syntax6014
+Node: Prologue6447
+Node: Declarations6753
+Node: Tokens7021
+Node: Conflicts7935
+Node: Start symbol8271
+Node: Rules8450
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:

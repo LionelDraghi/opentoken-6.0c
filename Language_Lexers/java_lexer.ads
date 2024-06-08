@@ -40,6 +40,7 @@ with OpenToken.Recognizer.Real;
 with OpenToken.Recognizer.Separator;
 with OpenToken.Recognizer.String;
 with OpenToken.Token.Enumerated.Analyzer;
+
 package Java_Lexer is
 
    ---------------------------------------------------------------------

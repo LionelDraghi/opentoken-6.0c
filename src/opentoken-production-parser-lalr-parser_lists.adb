@@ -382,9 +382,11 @@ package body OpenToken.Production.Parser.LALR.Parser_Lists is
          end loop;
 
          Enqueue
-           (New_Action_Tokens,
-            Action_Token_Free,
-            (J.Item.Action, Nonterminal.Handle (New_Token_Items (Action_Pos).New_Pointer), New_Tokens));
+           (List              => New_Action_Tokens,
+            Action_Token_Free => Action_Token_Free,
+            Action_Token      => (J.Item.Action,
+                                  Nonterminal.Handle (New_Token_Items (Action_Pos).New_Pointer),
+                                  New_Tokens));
 
          J          := J.Next;
          Action_Pos := Action_Pos + 1;

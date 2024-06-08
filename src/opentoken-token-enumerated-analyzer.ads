@@ -35,7 +35,7 @@
 
 -- --------------------------------------------------------------------------
 --  This package implements a mostly full-strength tokenizer (or
---  lexical analyizer).
+--  lexical analyzer).
 --
 --  To use it, create a function to feed text strings into the
 --  Analyzer. Create an enumerated type of all the tokens you want to
@@ -79,7 +79,7 @@ package OpenToken.Token.Enumerated.Analyzer is
 
    --------------------------------------------------------------------------
    --  Return a new recognizable token, using the given token
-   --  values. This is a convienence routine for more easily creating
+   --  values. This is a convenience routine for more easily creating
    --  Syntaxes. It will dynamically allocate the memory for the
    --  recognizer and token.
    --------------------------------------------------------------------------

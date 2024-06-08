@@ -2,7 +2,7 @@
 with "common";
 project OpenToken_Tree is
 
-   for Source_Dirs use ("../..", "../../Language_Lexers");
+   for Source_Dirs use ("../../src", "../../Language_Lexers");
 
    --  Compiler output files for ASIS tree files are generated in a
    --  different mode than files for code generation, so put them in a
