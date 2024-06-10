@@ -1,6 +1,6 @@
 name = "opentoken"
 description = "facility for performing token analysis and parsing within Ada"
-version = "6.0.3-2374021"
+version = "6.0.3"
 
 authors = ["Stephen Leake"]
 maintainers = ["Lionel Draghi <lionel.draghi@free.fr>"]
