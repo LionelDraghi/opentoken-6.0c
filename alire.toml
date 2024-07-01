@@ -12,4 +12,3 @@ tags = ["lexer", "parser"]
 project-files = ["./build/release/opentoken_lib.gpr"]
 
 [[depends-on]]
-aunit = "^24.0.0"
